@@ -1,0 +1,112 @@
+### 1) Obtener lista de usuarios (GET)
+GET http://localhost:5157/api/Users
+Authorization: Bearer justAGameAuth
+Accept: application/json
+
+###
+
+### 2) Crear nuevo usuario (POST) con datos válidos
+POST http://localhost:5157/api/Users
+Authorization: Bearer justAGameAuth
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Anthony",
+  "lastName": "Tester",
+  "email": "atester@bunnies.pink",
+  "dateOfBirth": "1990-01-01"
+}
+
+###
+
+### 3) Crear nuevo usuario (POST) con datos inválidos (ej. email inválido)
+POST http://localhost:5157/api/Users
+Authorization: Bearer justAGameAuth
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "Maria",
+  "lastName": "Invalidis",
+  "email": "aninvalidemail",
+  "dateOfBirth": "1995-05-20"
+}
+
+###
+
+### 4) Obtener un usuario por ID existente (GET)
+GET http://localhost:5157/api/Users/1
+Authorization: Bearer justAGameAuth
+Accept: application/json
+
+###
+
+### 5) Obtener un usuario por ID inexistente (GET)
+GET http://localhost:5157/api/Users/999
+Authorization: Bearer justAGameAuth
+Accept: application/json
+
+###
+
+### 6) Actualizar un usuario (PUT) con datos válidos
+PUT http://localhost:5157/api/Users/1
+Authorization: Bearer justAGameAuth
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1,
+  "firstName": "Anthony",
+  "lastName": "Tester",
+  "email": "atesternewmail@bunnies.pink",
+  "dateOfBirth": "1995-01-01"
+}
+
+###
+
+### 7) Actualizar un usuario con ID diferente al del body (BAD REQUEST)
+PUT http://localhost:5157/api/Users/2
+Authorization: Bearer justAGameAuth
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 3,
+  "firstName": "Patricio",
+  "lastName": "Estrella",
+  "email": "PAtricioEstrella@justkidding.com",
+  "dateOfBirth": "1995-03-10"
+}
+
+###
+
+### 8) Eliminar un usuario existente (DELETE)
+DELETE http://localhost:5157/api/Users/1
+Authorization: Bearer justAGameAuth
+Accept: application/json
+
+###
+
+### 9) Eliminar un usuario inexistente (DELETE)
+DELETE http://localhost:5157/api/Users/999
+Authorization: Bearer justAGameAuth
+Accept: application/json
+
+###
+
+### 10) Probar endpoint con token inválido (ejemplo middleware autenticación)
+GET http://localhost:5157/api/Users
+Authorization: Bearer justAGameAuth
+Accept: application/json
+Authorization: Bearer
+# Nota: Dejar el token vacío o poner algo no válido
+
+###
+
+### 11) Probar endpoint con token válido (ejemplo middleware autenticación)
+GET http://localhost:5157/api/Users
+Authorization: Bearer justAGameAuth
+Accept: application/json
+Authorization: Bearer ABC123
+# Suponiendo que tu validación acepte cualquier token no vacío
